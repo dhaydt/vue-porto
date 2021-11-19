@@ -30,7 +30,6 @@
                 circular: true,
                 duration: 1100,
               }"
-              class="d-flex"
             >
               <div class="cont item" v-for="(slide, i) in client" :key="i">
                 <div class="client-box">
@@ -127,7 +126,11 @@ export default {
   },
 };
 </script>
-
+<style lang="scss">
+.flicking-viewport .flicking-camera {
+  display: flex;
+}
+</style>
 <style lang="scss" scoped>
 #client {
   width: 100%;
