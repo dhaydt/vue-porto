@@ -6,7 +6,7 @@
       class="justify-content-around d-flex"
     >
       <b-navbar-brand href="#" class="logo">
-        <img src="@/assets/images/logo.png" alt="MH" />
+        <img src="@/assets/images/logos.png" alt="MH" />
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
