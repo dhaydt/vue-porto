@@ -145,7 +145,7 @@ export default {
     padding: 0 10px;
     .naviFlick {
       position: absolute;
-      width: 90%;
+      width: 95%;
       top: 40%;
       display: flex;
       justify-content: space-between;
