@@ -6,20 +6,63 @@
       <span class="transition3 head-small">Recent</span>
       <h3 class="transition3 head-big styled">Recent Doing Project Design</h3>
     </div>
-    <!--img--------------->
-    <div class="recent-img transition3">
-      <img src="@/assets/images/recent.png" />
+
+    <!-- Carousel -->
+    <div class="container-fluid mx-4 px-4">
+      <carousel-3d
+        border="0"
+        clickable
+        width="500"
+        height="350"
+        class="transition3"
+        animationSpeed="900"
+      >
+        <slide v-for="(slide, i) in slides" :index="i" :key="i">
+          <template slot-scope="{ index, isCurrent, leftIndex, rightIndex }">
+            <img
+              :data-index="index"
+              :class="{
+                current: isCurrent,
+                onLeft: leftIndex >= 0,
+                onRight: rightIndex >= 0,
+              }"
+              :src="slide.src"
+              class="carou-img"
+            />
+          </template>
+        </slide>
+      </carousel-3d>
     </div>
+    <!--img--------------->
+    <!-- <div class="recent-img transition3"> -->
+    <!-- <img src="@/assets/images/recent.png" /> -->
+    <!-- </div> -->
     <!--btn----------->
-    <a href="#" class="recent-btn transition3 styled">View Design</a>
+    <a href="#" class="recent-btn transition3 styled mt-4">View Project</a>
   </section>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      slides: [
+        { src: require("../assets/images/project/project1.png") },
+        { src: require("../assets/images/project/project2.png") },
+        { src: require("../assets/images/project/project3.png") },
+        { src: require("../assets/images/project/project4.png") },
+        { src: require("../assets/images/project/project5.png") },
+      ],
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+.carousel-3d-slide {
+  border-radius: 10px;
+  cursor: pointer;
+}
 #recent {
   display: flex;
   justify-content: center;

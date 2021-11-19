@@ -19,7 +19,7 @@
       <a
         href="/document/cv.pdf"
         target="_blank"
-        class="portfolio-btn square-anim styled"
+        class="portfolio-btn square-anim styled mt-4"
         >See My Portfolio</a
       >
     </div>

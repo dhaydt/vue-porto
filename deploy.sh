@@ -17,7 +17,7 @@ npm run build
 # git commit -m 'deploy'
 
 git add .
-git commit -m "deploys"                                     ─╯
+git commit -m "deploys"                            
 
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:dhaydt/vue-porto.git origin:gh-pages

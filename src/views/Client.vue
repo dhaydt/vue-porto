@@ -6,77 +6,125 @@
       <span class="head-small mb-1">Comments</span>
       <h3 class="head-big styled mt-1">Client's Say</h3>
     </div>
+    <b-row>
+      <b-col>
+        <div class="card-offline w-100 d-flex justify-content-center">
+          <b-row class="naviFlick">
+            <b-button variant="success" @click="prevBtn" class="btnNav"
+              ><i class="fas fa-chevron-left"></i
+            ></b-button>
+            <b-button variant="success" @click="nextBtn" class="btnNav"
+              ><i class="fas fa-chevron-right"></i
+            ></b-button>
+          </b-row>
+
+          <div
+            class="wrapper flicking-wrap container mt-4 pt-3 w-100"
+            style="overflow: hidden"
+          >
+            <Flicking
+              ref="flicking"
+              :options="{
+                align: 'prev',
+                defaultIndex: 0,
+                circular: true,
+                duration: 1100,
+              }"
+            >
+              <div class="cont item" v-for="(slide, i) in client" :key="i">
+                <div class="client-box">
+                  <!--img-------->
+                  <img :src="slide.img" />
+                  <!--stars/reviews---------->
+                  <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <!--details/comment------>
+                  <p>
+                    {{ slide.content }}
+                  </p>
+                  <!--btn--------->
+                  <a href="#">Read More</a>
+                </div>
+              </div>
+            </Flicking>
+          </div>
+        </div>
+      </b-col>
+    </b-row>
     <!--client-box-container--------------->
-    <div class="c-box-container">
-      <!--box-1----->
-      <div class="client-box">
-        <!--img-------->
-        <img src="@/assets/images/client-1.png" />
-        <!--stars/reviews---------->
-        <div class="star">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <!--details/comment------>
-        <p>
-          If you're looking for random paragraphs, you've come to the right
-          place. When a random word or a random sentence isn't quite enough, the
-          next logical step is to find a random paragraph.
-        </p>
-        <!--btn--------->
-        <a href="#">Read More</a>
-      </div>
-      <!--box-2----->
-      <div class="client-box">
-        <!--img-------->
-        <img src="@/assets/images/client-2.png" />
-        <!--stars/reviews---------->
-        <div class="star">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <!--details/comment------>
-        <p>
-          If you're looking for random paragraphs, you've come to the right
-          place. When a random word or a random sentence isn't quite enough, the
-          next logical step is to find a random paragraph.
-        </p>
-        <!--btn--------->
-        <a href="#">Read More</a>
-      </div>
-      <!--box-3----->
-      <div class="client-box">
-        <!--img-------->
-        <img src="@/assets/images/client-3.png" />
-        <!--stars/reviews---------->
-        <div class="star">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <!--details/comment------>
-        <p>
-          If you're looking for random paragraphs, you've come to the right
-          place. When a random word or a random sentence isn't quite enough, the
-          next logical step is to find a random paragraph.
-        </p>
-        <!--btn--------->
-        <a href="#">Read More</a>
-      </div>
-    </div>
   </section>
 </template>
 
 <script>
-export default {};
+import { FlickingError, ERROR_CODE } from "@egjs/flicking";
+export default {
+  data() {
+    return {
+      client: [
+        {
+          img: require("../assets/images/client-1.png"),
+          content:
+            " If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isnt quite enough, the next logical step is to find a random paragraph.",
+        },
+        {
+          img: require("../assets/images/client-2.png"),
+          content:
+            " If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isnt quite enough, the next logical step is to find a random paragraph.",
+        },
+        {
+          img: require("../assets/images/client-3.png"),
+          content:
+            " If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isnt quite enough, the next logical step is to find a random paragraph.",
+        },
+        {
+          img: require("../assets/images/client-1.png"),
+          content:
+            " If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isnt quite enough, the next logical step is to find a random paragraph.",
+        },
+        {
+          img: require("../assets/images/client-2.png"),
+          content:
+            " If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isnt quite enough, the next logical step is to find a random paragraph.",
+        },
+      ],
+    };
+  },
+
+  methods: {
+    async nextBtn() {
+      try {
+        await this.$refs.flicking.next();
+      } catch (err) {
+        if (err instanceof FlickingError) {
+          if (err.code === ERROR_CODE.ANIMATION_ALREADY_PLAYING) {
+            console.log("Animation is already playing!");
+          } else if (err.code === ERROR_CODE.ANIMATION_INTERRUPTED) {
+            console.log("Animation is interrupted by user.");
+          }
+        }
+      }
+      // console.log("flick", this.$refs.flicking);
+    },
+    async prevBtn() {
+      try {
+        await this.$refs.flicking.prev();
+      } catch (err) {
+        if (err instanceof FlickingError) {
+          if (err.code === ERROR_CODE.ANIMATION_ALREADY_PLAYING) {
+            console.log("Animation is already playing!");
+          } else if (err.code === ERROR_CODE.ANIMATION_INTERRUPTED) {
+            console.log("Animation is interrupted by user.");
+          }
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -85,9 +133,30 @@ export default {};
   border-top: 1px solid rgba(58, 58, 58, 0.03);
   border-bottom: 1px solid rgba(58, 58, 58, 0.03);
   padding: 50px 0px;
-  background-image: url("/images/bg.png");
+  background-image: src("../assets/images/bg.png");
   background-position: center;
   background-size: 1000px;
+  .card-offline {
+    position: relative;
+    padding: 0 10px;
+    .naviFlick {
+      position: absolute;
+      width: 90%;
+      top: 40%;
+      display: flex;
+      justify-content: space-between;
+      .btnNav {
+        width: 40px;
+        border-radius: 50%;
+        background-color: #36b7b5;
+        transition: 0.3s;
+      }
+
+      .btnNav:hover {
+        background-color: #747474;
+      }
+    }
+  }
 }
 .client-heading {
   display: flex;
@@ -131,6 +200,7 @@ export default {};
 .star {
   display: flex;
   margin: 10px 0px 10px 0px;
+  color: #ff9529;
 }
 .star i {
   color: #ff9529;
@@ -139,7 +209,7 @@ export default {};
   color: #747474;
   font-size: 1.2rem;
   margin: 0px;
-  text-align: center;
+  text-align: left;
   display: block;
   display: -webkit-box;
   max-width: 80%;
