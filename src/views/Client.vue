@@ -30,6 +30,7 @@
                 circular: true,
                 duration: 1100,
               }"
+              class="d-flex"
             >
               <div class="cont item" v-for="(slide, i) in client" :key="i">
                 <div class="client-box">
