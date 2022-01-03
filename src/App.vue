@@ -14,6 +14,7 @@ import Client from "./views/Client";
 import Recent from "./views/Recent";
 import Skills from "./views/Skills";
 import Navbar from "./components/Navbar";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);

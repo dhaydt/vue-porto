@@ -27,7 +27,7 @@
                 onRight: rightIndex >= 0,
               }"
               :src="slide.src"
-              class="carou-img"
+              class="carou-img h-100"
             />
           </template>
         </slide>

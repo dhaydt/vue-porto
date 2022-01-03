@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "sh deploy.sh"
+    "push": "sh deploy.sh"
   },
   "dependencies": {
     "@egjs/vue-flicking": "^4.4.0",
